@@ -64,24 +64,24 @@ public:
 		return size;
 	};
 
-	void resize(int newSize) {
+	void resize(int k) {
 	
-		int res = newSize > size ? size : newSize;
-		if (newSize < capacity) {
+		int res = k > size ? size : k;
+		if (k < capacity) {
 
-			size = newSize;
+			size = k;
 		}
 		else {
 
-			T* data_copy = new T[2 * newSize];
+			T* data_copy = new T[2 * k];
 			for (int i = 0; i < res; i++) {
 
 				data_copy[i] = data[i];
 			}
 			delete[] data;
 			data = data_copy;
-			capacity = 2 * newSize;
-			size = newSize;
+			capacity = 2 * k;
+			size = k;
 		}
 	};
 
@@ -206,25 +206,23 @@ public:
 		delete[] data;
 	}
 
-	void resize(int newSize) {
+	void resize(int k) {
 
 		
-		T* data_tmp = new T[2 * newSize];
+		T* data_tmp = new T[2 * k];
 
-		for (int i = 0; i < newSize; i++) {
+		for (int i = 0; i < k; i++) {
 
 			data_tmp[i] = data[i];
 		}
-
-		int tmp_first = 0;
-		int tmp_last = last;
-
+		int first_q = 0;
+		int last_q = last;
 		delete[] data;
 		data = data_tmp;
-		capacity = 2 * newSize;
-		size = newSize;
-		first = tmp_first;
-		last = tmp_last;
+		capacity = 2 * k;
+		size = k;
+		first = first_q;
+		last = last_q;
 	};
 
 	int size_q() {
@@ -262,7 +260,7 @@ public:
 		}
 	}
 
-	T top_q() {
+	T top() {
 
 		if (size < 1) {
 

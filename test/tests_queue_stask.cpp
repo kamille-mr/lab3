@@ -117,5 +117,5 @@ TEST(Queue, can_top) {
 
 	Queue<int> queue;
 	queue.push(5);
-	EXPECT_EQ(5, queue.top_q());
+	EXPECT_EQ(5, queue.top());
 }
