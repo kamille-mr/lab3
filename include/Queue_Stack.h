@@ -201,31 +201,75 @@ public:
 		last = 0;
 	}
 
-	Queue(const Queue& queue) {
-
-		size = queue.size;
-		capacity = queue.capacity;
-		queue.data = new T[queue.capacity];
-		for (int i = 0; i < capacity; i++) {
-
-			queue.data[i] = 0;
-		}
-		first = queue.first;
-		last = queue.last;
-	}
-
 	~Queue() {
 
-		delete[] queue.data;
+		delete[] data;
 	}
 
-	void resize() {
-
-		tmp = (size + 1) * 2;
-		T* data_tmp = new T[tmp];
+	void resize(int newSize) {
 
 		
+		T* data_tmp = new T[2 * newSize];
+
+		for (int i = 0; i < newSize; i++) {
+
+			data_tmp[i] = data[i];
+		}
+
+		int tmp_first = 0;
+		int tmp_last = last;
+
+		delete[] data;
+		data = data_tmp;
+		capacity = 2 * newSize;
+		size = newSize;
+		first = tmp_first;
+		last = tmp_last;
 	};
+
+	int size_q() {
+
+		return size;
+	}
+
+	bool empty() {
+	
+		return size == 0;
+	}
+
+	void push(T k) {
+
+		data[first] = k;
+		first++;
+		size++;
+		if ((first == last) && (size != 0)) {
+
+			resize(size);
+		}
+	}
+
+	void pop() {
+
+		if (size == 0) {
+
+			throw "error";
+		}
+		else {
+
+			data[first % capacity] = 0;
+			first++;
+			size--;
+		}
+	}
+
+	T top_q() {
+
+		if (size < 1) {
+
+			throw "error";
+		}
+		return data[first % size];
+	}
 };
 
 

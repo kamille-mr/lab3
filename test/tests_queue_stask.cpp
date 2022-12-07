@@ -2,7 +2,7 @@
 
 #include <gtest.h>
 
-//тесты на стэк
+//stack_tests
 
 TEST(Stack, can_create_stack){
 
@@ -67,4 +67,55 @@ TEST(Stack, can_top) {
 	Stack<int> stack;
 	stack.push(5);
 	EXPECT_EQ(5, stack.top());
+}
+
+
+//queue_tests
+
+TEST(Queue, can_create_queue) {
+
+	ASSERT_NO_THROW(Queue<int> queue);
+}
+
+TEST(Queue, empty_test) {
+
+	Queue<int> queue;
+	ASSERT_NO_THROW(queue.empty());
+}
+
+TEST(Queue, empty_test_empty) {
+
+	Queue<int> queue;
+	EXPECT_EQ(1, queue.empty());
+}
+
+TEST(Queue, empty_test_not_empty) {
+	Queue<int> queue;
+	queue.push(1);
+	EXPECT_EQ(0, queue.empty());
+}
+
+TEST(Queue, can_push_elements) {
+
+	Queue<int> queue;
+	ASSERT_NO_THROW(queue.push(1));
+}
+
+TEST(Queue, can_pop_elements) {
+
+	Queue<int> queue;
+	queue.push(1);
+	ASSERT_NO_THROW(queue.pop());
+}
+
+TEST(Queue, can_not_pop_elements_empty) {
+	Queue<int> queue;
+	ASSERT_ANY_THROW(queue.pop());
+}
+
+TEST(Queue, can_top) {
+
+	Queue<int> queue;
+	queue.push(5);
+	EXPECT_EQ(5, queue.top_q());
 }
