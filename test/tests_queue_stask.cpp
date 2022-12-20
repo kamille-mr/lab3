@@ -119,3 +119,57 @@ TEST(Queue, can_top) {
 	queue.push(5);
 	EXPECT_EQ(5, queue.top());
 }
+
+TEST(Queue, can_get_size)
+{
+	Queue<int> queue;
+	for (int i = 0; i < 3; i++){
+	
+		queue.push(i);
+	}
+	EXPECT_EQ(3, queue.size_q());
+}
+
+TEST(Queue, can_resize) {
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	queue.push(4);
+	queue.pop();
+	queue.pop();
+	queue.push(5);
+	queue.push(6);
+	queue.push(7);
+	queue.push(8);
+	queue.push(9);
+	EXPECT_EQ(7, queue.size_q());
+}
+
+TEST(Queue, can_resize_check) {
+	Queue<int> queue;
+	queue.push(1);
+	queue.push(2);
+	queue.push(3);
+	queue.push(4);
+	queue.pop();
+	queue.pop();
+	queue.push(5);
+	queue.push(6);
+	queue.push(7);
+	queue.push(8);
+	queue.push(9);
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+	queue.pop();
+	std::cout << queue.top() << std::endl;
+}

@@ -190,12 +190,14 @@ private:
 	int first;
 	int last;
 
+
+
 public:
 
 	Queue() {
 
 		size = 0;
-		capacity = 1;
+		capacity = 6;
 		data = new T[capacity];
 		first = 0;
 		last = 0;
@@ -208,22 +210,18 @@ public:
 
 	void resize(int k) {
 
-		
-		T* data_tmp = new T[2 * k];
+		capacity = 2 * k;
+		T* data_tmp = new T[capacity];
+		for (int i = 0; i < size; i++) {
 
-		for (int i = 0; i < k; i++) {
-
-			data_tmp[i] = data[i];
+			data_tmp[i] = data[last];
+			first++;
 		}
-		int first_q = 0;
-		int last_q = last;
+		first = 0;
+		last = size;
 		delete[] data;
 		data = data_tmp;
-		capacity = 2 * k;
-		size = k;
-		first = first_q;
-		last = last_q;
-	};
+	}
 
 	int size_q() {
 
@@ -231,15 +229,19 @@ public:
 	}
 
 	bool empty() {
-	
+
 		return size == 0;
 	}
 
 	void push(T k) {
 
-		data[first] = k;
-		first++;
+		data[last] = k;
+		last++;
 		size++;
+		if (last >= capacity) {
+
+			last = 0;
+		}
 		if ((first == last) && (size != 0)) {
 
 			resize(size);
@@ -248,13 +250,13 @@ public:
 
 	void pop() {
 
-		if (size == 0) {
+		if (size == 0 ) {
 
 			throw "error";
 		}
 		else {
 
-			data[first % capacity] = 0;
+			data[first] = 0;
 			first++;
 			size--;
 		}
@@ -262,12 +264,13 @@ public:
 
 	T top() {
 
-		if (size < 1) {
+		if (size <1) {
 
 			throw "error";
 		}
-		return data[first % size];
+		return data[first];
 	}
+
 };
 
 
