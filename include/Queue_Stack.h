@@ -214,13 +214,14 @@ public:
 		T* data_tmp = new T[capacity];
 		for (int i = 0; i < size; i++) {
 
-			data_tmp[i] = data[last];
+			data_tmp[i] = data[first];
 			first++;
 		}
-		first = 0;
-		last = size;
+		
 		delete[] data;
 		data = data_tmp;
+		first = 0;
+		last = size;
 	}
 
 	int size_q() {
