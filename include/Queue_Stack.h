@@ -197,7 +197,7 @@ public:
 	Queue() {
 
 		size = 0;
-		capacity = 6;
+		capacity = 4;
 		data = new T[capacity];
 		first = 0;
 		last = 0;
@@ -212,10 +212,15 @@ public:
 
 		capacity = 2 * k;
 		T* data_tmp = new T[capacity];
-		for (int i = 0; i < size; i++) {
 
-			data_tmp[i] = data[first];
-			first++;
+		for (int i = last; i < size; i++) {
+		
+			data_tmp[i] = data[i];
+		}
+
+		for (int i = 0; i < first; i++) {
+
+			data_tmp[i + size - last] = data[i];
 		}
 		
 		delete[] data;
@@ -243,7 +248,7 @@ public:
 
 			last = 0;
 		}
-		if ((first == last) && (size != 0)) {
+		if ((first == last) && (size == capacity)) {
 
 			resize(size);
 		}

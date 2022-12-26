@@ -159,17 +159,5 @@ TEST(Queue, can_resize_check) {
 	queue.push(7);
 	queue.push(8);
 	queue.push(9);
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
-	queue.pop();
-	std::cout << queue.top() << std::endl;
+	EXPECT_EQ(3, queue.top());
 }
